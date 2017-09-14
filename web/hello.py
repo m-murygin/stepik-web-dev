@@ -2,11 +2,14 @@
 simple web server to send response
 """
 
-import urlparse
+try:
+    from urllib.parse import parse_qsl
+except ImportError:
+    from urlparse import parse_qsl
 
 def app(environ, start_response):
     """Simplest possible application object"""
-    string_arr = urlparse.parse_qsl(environ['QUERY_STRING'])
+    string_arr = parse_qsl(environ['QUERY_STRING'])
     result = ''
     for var_tuple in string_arr:
         result = result + var_tuple[0] + '=' + var_tuple[1] + '\n'
