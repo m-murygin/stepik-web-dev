@@ -2,10 +2,14 @@
 simple web server to send response
 """
 
-try:
-    from urllib.parse import parse_qsl
-except ImportError:
+import sys
+
+version = sys.version_info[0]
+
+if version == 2:
     from urlparse import parse_qsl
+else:
+    from urllib.parse import parse_qsl
 
 def app(environ, start_response):
     """Simplest possible application object"""
@@ -20,4 +24,7 @@ def app(environ, start_response):
         ('Content-Length', str(len(result)))
     ]
     start_response(status, response_headers)
-    return [result]
+    if version == 2:
+        return [result]
+    else:
+        return [bytes(result, 'utf-8')]
