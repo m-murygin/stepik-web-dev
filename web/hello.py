@@ -6,18 +6,11 @@ import sys
 
 version = sys.version_info[0]
 
-if version == 2:
-    from urlparse import parse_qsl
-else:
-    from urllib.parse import parse_qsl
-
 def app(environ, start_response):
     """Simplest possible application object"""
     print('{0} {1}'.format(environ['PATH_INFO'], environ['QUERY_STRING']))
-    string_arr = parse_qsl(environ['QUERY_STRING'])
-    result = ''
-    for var_tuple in string_arr:
-        result = result + var_tuple[0] + '=' + var_tuple[1] + '\n'
+    string_arr = environ['QUERY_STRING'].split("&")
+    result = "\n".join(string_arr)
 
     status = '200 OK'
     response_headers = [
