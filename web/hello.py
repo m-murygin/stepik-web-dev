@@ -13,7 +13,7 @@ else:
 
 def app(environ, start_response):
     """Simplest possible application object"""
-    print environ['PATH_INFO'] + environ['QUERY_STRING']
+    print '%s %s' % (environ['PATH_INFO'], environ['QUERY_STRING'])
     string_arr = parse_qsl(environ['QUERY_STRING'])
     result = ''
     for var_tuple in string_arr:
