@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'qa',
         'USER': 'root',
         'PASSWORD': '111111',
-        'HOST': 'localhost',
+        'HOST': 'db',
     }
 }
 
