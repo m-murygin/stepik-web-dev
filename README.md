@@ -2,7 +2,9 @@
 
 The repository for storing exercies in web-development course
 
-## Prerequisites
+## Dockerized Version
+
+### Prerequisites
 
 1. Install docker
 
@@ -14,7 +16,7 @@ The repository for storing exercies in web-development course
 
 1. Logout and login
 
-## Getting started
+### Getting started
 
 1. Migrate database
 
