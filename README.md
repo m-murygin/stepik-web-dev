@@ -16,6 +16,12 @@ The repository for storing exercies in web-development course
 
 ## Getting started
 
+1. Migrate database
+
+    ```bash
+    docker-compose run --rm backend ./ask/manage.py migrate
+    ```
+
 1. Run app
 
     ```bash
