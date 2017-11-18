@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
   nginx:
@@ -17,7 +17,7 @@ services:
     ports:
     - 8000:8000
     volumes:
-    - .:/home/box
+    - .:/home/box/web
     environment:
       DJANGO_SETTINGS_MODULE: ask.dev_settings
     depends_on:
