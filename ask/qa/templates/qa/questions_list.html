@@ -1,7 +1,25 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    {% for question in questions %}
-    <h3><a href="/question/{{ question.id }}">{{question.title}}</a></h3>
-    {% endfor %}
+    <div class="row">
+        {% for question in questions %}
+        <h3><a href="/question/{{ question.id }}">{{question.title}}</a></h3>
+        {% endfor %}
+    </div>
+
+    <div class="row text-center">
+        <span class="step-links">
+            {% if questions.has_previous %}
+            <a href="?page={{ questions.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ questions.number }} of {{ questions.paginator.num_pages }}.
+            </span>
+
+            {% if questions.has_next %}
+            <a href="?page={{ questions.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
 {% endblock content %}

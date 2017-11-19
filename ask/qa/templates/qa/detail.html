@@ -1,13 +1,15 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <h2>{{ question.title }} </h2>
-    <div class="well">{{ question.text }}</div>
-    <p>
-        <span class="label label-primary label-lg">Author: {{ question.author }}</span>
-        <span class="label label-primary">AddedAt: {{ question.added_at }}</span>
-        <a href="#">Rating
-            <span class="badge">{{ question.rating }}</span>
-        </a>
-    </p>
+    <div class="row">
+        <h2>{{ question.title }} </h2>
+        <div class="well">{{ question.text }}</div>
+        <p>
+            <span class="label label-primary label-lg">Author: {{ question.author }}</span>
+            <span class="label label-primary">AddedAt: {{ question.added_at }}</span>
+            <a href="#">Rating
+                <span class="badge">{{ question.rating }}</span>
+            </a>
+        </p>
+    </div>
 {% endblock content %}
