@@ -31,12 +31,12 @@ def question_view(request, question_id):
     answers = question.answer_set.all()
 
     if request.method == 'POST':
-        form = AnswerForm(question_id, request.POST)
+        form = AnswerForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(request.path)
     else:
-        form = AnswerForm(question_id)
+        form = AnswerForm(question=question_id)
 
     return render(request, 'qa/detail.html', {
         'form': form,
