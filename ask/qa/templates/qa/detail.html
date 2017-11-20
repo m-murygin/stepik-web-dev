@@ -2,14 +2,28 @@
 
 {% block content %}
     <div class="row">
-        <h2>{{ question.title }} </h2>
-        <div class="well">{{ question.text }}</div>
-        <p>
-            <span class="label label-primary label-lg">Author: {{ question.author }}</span>
-            <span class="label label-primary">AddedAt: {{ question.added_at }}</span>
-            <a href="#">Rating
-                <span class="badge">{{ question.rating }}</span>
-            </a>
-        </p>
+        <div class="col-sm-12">
+            <h2>{{ question.title }} </h2>
+            <div class="well">{{ question.text }}</div>
+            <p>
+                <span class="label label-primary label-lg">Author: {{ question.author }}</span>
+                <span class="label label-primary">AddedAt: {{ question.added_at }}</span>
+                <a href="#">Rating
+                    <span class="badge">{{ question.rating }}</span>
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-11 col-sm-offset-1">
+            {% for answer in answers %}
+            <div class="well">{{ answer.text }}</div>
+            <p>
+                <span class="label label-primary label-lg">Author: {{ answer.author }}</span>
+                <span class="label label-primary">AddedAt: {{ answer.added_at }}</span>
+
+            </p>
+            {% endfor %}
+        </div>
     </div>
 {% endblock content %}

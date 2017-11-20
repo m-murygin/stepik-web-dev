@@ -15,9 +15,11 @@ def test(request, *args, **kwargs):
 @require_GET
 def question_view(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
+    answers = question.answer_set.all()
 
     return render(request, 'qa/detail.html', {
         'question': question,
+        'answers': answers,
     })
 
 
