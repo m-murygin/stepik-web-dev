@@ -26,12 +26,20 @@ def ask_view(request):
 
     return render(request, 'qa/ask.html', {'form': form})
 
-@require_GET
 def question_view(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     answers = question.answer_set.all()
 
+    if request.method == 'POST':
+        form = AnswerForm(question_id, request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(request.path)
+    else:
+        form = AnswerForm(question_id)
+
     return render(request, 'qa/detail.html', {
+        'form': form,
         'question': question,
         'answers': answers,
     })
