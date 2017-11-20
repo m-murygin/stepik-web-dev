@@ -3,14 +3,28 @@ from __future__ import unicode_literals
 
 from django.views.decorators.http import require_GET
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import TemplateView
 
 from qa.models import Question
+from qa.forms import AskForm, AnswerForm
 
 
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
+
+
+def ask_view(request):
+    if request.method == 'POST':
+        form = AskForm(request.POST)
+        if form.is_valid():
+            question = form.save()
+            return HttpResponseRedirect(question.get_url())
+    else:
+        form = AskForm()
+
+    return render(request, 'qa/ask.html', {'form': form})
 
 @require_GET
 def question_view(request, question_id):
