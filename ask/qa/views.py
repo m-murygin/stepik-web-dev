@@ -34,9 +34,11 @@ def signup_view(request):
     return render(request, 'registration/signup.html', { 'form': form })
 
 
-@login_required
 def ask_view(request):
     if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+
         form = AskForm(request.user, request.POST)
         if form.is_valid():
             question = form.save()
@@ -47,7 +49,6 @@ def ask_view(request):
     return render(request, 'qa/ask.html', {'form': form})
 
 
-@login_required
 def question_view(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     answers = question.answer_set.all()
